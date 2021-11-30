@@ -1,0 +1,120 @@
+[General]
+# General
+http-listen = 0.0.0.0:8888
+socks5-listen = 0.0.0.0:8889
+external-controller-access = lhie1@0.0.0.0:6170
+internet-test-url = http://www.gstatic.com/generate_204
+proxy-test-url = http://www.gstatic.com/generate_204
+test-timeout = 3
+ipv6 = false
+show-error-page-for-reject = true
+# DNS
+dns-server = system, 119.29.29.29, 119.28.28.28, 1.2.4.8, 182.254.116.116
+# Advanced
+loglevel = notify
+skip-proxy = 127.0.0.1, 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12, 100.64.0.0/10, 17.0.0.0/8, localhost, *.local, *.crashlytics.com
+exclude-simple-hostnames = true
+use-default-policy-if-wifi-not-primary = false
+# Others
+allow-wifi-access = true
+enhanced-mode-by-rule = false
+# network-framework = true
+
+[Replica]
+hide-apple-request = true
+hide-crashlytics-request = true
+hide-udp = false
+keyword-filter-type = false
+
+[Proxy]
+Direct = direct
+Reject = reject
+
+[Proxy Group]
+网络加速 = select, 自动选择, HK节点, US节点, SG节点, JP节点, TW节点, other线路, no-alert=0, hidden=0
+全球媒体 = select, 自动选择, HK节点, SG节点, US节点, JP节点, TW节点, other线路, no-alert=0, hidden=0
+其他走向 = select, 网络加速, DIRECT, US节点, HK节点, SG节点, JP节点, TW节点, no-alert=0, hidden=0
+自动选择 = fallback, HK节点, SG节点, US节点, JP节点, TW节点, no-alert=0, hidden=1
+HK节点 = select, update-interval=0, no-alert=0, hidden=0, policy-path=https://sub.store/download/p, policy-regex-filter=(?=.*(港|HK|(?i)Hong))^((?!(台|日|韩|新|美)).)*$
+SG节点 = select, update-interval=0, policy-regex-filter=(?=.*(新|狮|獅|SG|(?i)Singapore))^((?!(港|台|日|韩|D|美)).)*$, no-alert=0, hidden=0, policy-path=https://sub.store/download/p
+US节点 = select, update-interval=0, no-alert=0, hidden=0, policy-path=https://amyconvert.com/api?target=surge&ver=4&url=https%3A%2F%2Ffoly.ga%2Flink%2F5uvIZHCYgAk0BjaQ%3Fclash%3D1%26extend%3D1&insert=false&emoji=true&list=true&tfo=true&scv=false&fdn=false&sort=true&udp=true, policy-regex-filter=(?=.*(美|US|(?i)States|American))^((?!(港|台|日|韩|新)).)*$
+JP节点 = select, update-interval=0, policy-regex-filter=(?=.*(日|JP|(?i)Japan))^((?!(港|台|韩|新|美)).)*$, no-alert=0, hidden=0, policy-path=https://amyconvert.com/api?target=surge&ver=4&url=https%3A%2F%2Ffoly.ga%2Flink%2F5uvIZHCYgAk0BjaQ%3Fclash%3D1%26extend%3D1&insert=false&emoji=true&list=true&tfo=true&scv=false&fdn=false&sort=true&udp=true
+TW节点 = select, update-interval=0, policy-regex-filter=(?=.*(台|TW|(?i)Taiwan))^((?!(港|日|韩|新|美)).)*$, no-alert=0, hidden=0, policy-path=https://sub.store/download/p
+other线路 = select, policy-path=https://sub.store/download/p, update-interval=0, policy-regex-filter=(?=.*)^((?!(港|HK|Hong|台|TW|Taiwan|日|JP|Japan|美|US|States|American|新|狮|獅|SG|Singapore|韩)).)*$, no-alert=0, hidden=0
+
+[Rule]
+# > Spotify
+DOMAIN-SUFFIX,ap.spotify.com,Direct
+# > Client
+# > Proxy
+PROCESS-NAME,v2ray,Direct
+PROCESS-NAME,ss-local,Direct
+PROCESS-NAME,UUBooster,Direct
+# > Download
+PROCESS-NAME,aria2c,Direct
+PROCESS-NAME,fdm,Direct
+PROCESS-NAME,Folx,Direct
+PROCESS-NAME,NetTransport,Direct
+PROCESS-NAME,Thunder,Direct
+PROCESS-NAME,Transmission,Direct
+PROCESS-NAME,uTorrent,Direct
+PROCESS-NAME,WebTorrent,Direct
+PROCESS-NAME,WebTorrent Helper,Direct
+# ------Rulesets (规则集）------
+# > Advertising (广告)
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Guard/Advertising.list,Reject
+DOMAIN-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Guard/AdvertisingPlus.list,Reject
+# > Privacy (隐私)
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Guard/Privacy.list,Reject
+# > Hijacking (运营商劫持或恶意网站)
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Guard/Hijacking.list,Reject
+# 媒体
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/StreamingMedia/Streaming.list,全球媒体,update-interval=604800
+# 全球网
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Global.list,网络加速,update-interval=604800
+# > China
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/China.list,Direct
+# > Local Area Network 局域网
+IP-CIDR,192.168.0.0/16,Direct
+IP-CIDR,10.0.0.0/8,Direct
+IP-CIDR,172.16.0.0/12,Direct
+IP-CIDR,127.0.0.0/8,Direct
+IP-CIDR,100.64.0.0/10,Direct
+IP-CIDR,224.0.0.0/4,Direct
+# > ChinaIP
+# 使用来自 ipipdotnet 的 ChinaIP 以解决数据不准确的问题，使用 ChinaIP.list 时禁用「GEOIP,CN」规则
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Extra/ChinaIP.list,Direct
+# > GeoIP China(若启用，则禁用 ChinaIP.list)
+# GEOIP,CN,Direct
+# > DNS 查询失败走 Final 规则
+FINAL,其他走向,dns-failed
+
+[Host]
+# > 该段定义本地 DNS 记录
+# > 该功能等同于 /etc/hosts，加上了泛解析和别名支持。
+# > Firebase Cloud Messaging
+mtalk.google.com = 108.177.125.188
+# ===============================================================================
+# 该段定义针对 HTTP 请求的 URL 重定向规则
+
+[URL Rewrite]
+# > 有两种重定向方式: 'header' 和 '302'
+# > 建议用模块
+# > Redirect Google Search Service
+^(http|https):\/\/(www.)?(g|google)\.cn https://www.google.com 302
+# AbeamTV Unlock
+^https?:\/\/api\.abema\.io\/v\d\/ip\/check - reject
+# Redirect Google Service
+^https?:\/\/(www.)?g\.cn https://www.google.com 302
+^https?:\/\/(www.)?google\.cn https://www.google.com 302
+# Redirect HTTP to HTTPS
+^https?:\/\/(www.)?taobao\.com\/ https://www.taobao.com/ 302
+^https?:\/\/(www.)?jd\.com\/ https://www.jd.com/ 302
+^https?:\/\/(www.)?mi\.com\/ https://www.mi.com/ 302
+^https?:\/\/you\.163\.com\/ https://you.163.com/ 302
+^https?:\/\/(www.)?suning\.com/ https://suning.com/ 302
+^https?:\/\/(www.)?yhd\.com https://yhd.com/ 302
+# ===============================================================================
+
+[MITM]
+skip-server-cert-verify = true
