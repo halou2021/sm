@@ -1,30 +1,87 @@
 [General]
-# General
-http-listen = 0.0.0.0:8888
-socks5-listen = 0.0.0.0:8889
-external-controller-access = lhie1@0.0.0.0:6170
-internet-test-url = http://www.gstatic.com/generate_204
-proxy-test-url = http://www.gstatic.com/generate_204
-test-timeout = 3
+# Update-2021.11.28.10.30
+# 通用设置
+# > 增强版 Wi-Fi 助理
+# (在 Wi-Fi 网络不佳时尝试使用数据网络建立连接，请仅当使用不限量的数据流量时开启)
+wifi-assist = true
+# > Internet 测试 URL
+internet-test-url = http://wifi.vivo.com.cn/generate_204
+# > 代理测速 URL
+proxy-test-url = http://cp.cloudflare.com/generate_204
+# > 测试超时（秒）
+test-timeout = 5
+# > TLS 引擎
+tls-provider = openssl
+# > 自定义 GeoIP 数据库
+geoip-maxmind-url = https://raw.githubusercontent.com/Hackl0us/GeoIP2-CN/release/Country.mmdb
+# > 隐藏状态栏上的VPN图标
+hide-vpn-icon = true
+# > IPv6 支持（默认关闭）
 ipv6 = false
-show-error-page-for-reject = true
-# DNS
-dns-server = system, 119.29.29.29, 119.28.28.28, 1.2.4.8, 182.254.116.116
-# Advanced
-loglevel = notify
-skip-proxy = 127.0.0.1, 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12, 100.64.0.0/10, 17.0.0.0/8, localhost, *.local, *.crashlytics.com
-exclude-simple-hostnames = true
-use-default-policy-if-wifi-not-primary = false
-# Others
+# > 允许 Wi-Fi 访问 (仅 iOS ）
 allow-wifi-access = true
-enhanced-mode-by-rule = false
-# network-framework = true
+wifi-access-http-port = 6152
+wifi-access-socks5-port = 6153
+# > 允许 Wi-Fi 访问 (仅 macOS，若允许远程访问将「127.0.0.1」改为「0.0.0.0」)
+http-listen = 127.0.0.1:6152
+socks5-listen = 127.0.0.1:6153
+# > HTTP-API
+# 依次为：密码，主机名，端口
+http-api = Brian@0.0.0.0:6171
+# > HTTP-API-TLS
+http-api-tls = false
+# > Web控制器
+# Safari输入127.0.0.1:6171,填入HTTP-API密码即可。
+http-api-web-dashboard = true
+# > 兼容模式 (仅 iOS)
+# compatibility-mode = 0
+# > 跳过代理
+skip-proxy = 127.0.0.1, 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12, 100.64.0.0/10, localhost, *.local, passenger.t3go.cn
+# > 排除简单主机名
+exclude-simple-hostnames = true
+# > Network framwork
+# 启动 Network.framework 以开启用户态网络协议栈，可提高吞吐量，降低延迟并开启 MPTCP。（需手动重启 Surge) 实验性功能可能导致 Surge 不稳定，甚至引起系统崩溃。
+# > 默认开启：true ，可根据自己的需求选择关闭：false 。
+network-framework = true
+# > DNS 服务器
+dns-server = 119.29.29.29, 223.5.5.5, 223.6.6.6, system
+# > DNS over HTPPS (如无必要不建议使用 DNS over HTTPS)
+# doh-server = https://dns.alidns.com/dns-query
+# > 从 /etc/hosts 读取 DNS 记录
+read-etc-hosts = true
+# 高级设置
+# > 日志级别
+loglevel = warning
+# > 当遇到 REJECT 策略时返回错误页
+show-error-page-for-reject = true
+# > Always Real IP Hosts
+always-real-ip = msftconnecttest.com, msftncsi.com, *.msftconnecttest.com, *.msftncsi.com, *.srv.nintendo.net, *.stun.playstation.net, xbox.*.microsoft.com, *.xboxlive.com, *.battlenet.com.cn, *.battlenet.com, *.blzstatic.cn, *.battle.net
+# Hijack DNS
+# hijack-dns = 8.8.8.8:53, 8.8.4.4:53
+# > TCP Force HTTP Hosts
+force-http-engine-hosts = *.ott.cibntv.net, 123.59.31.1,119.18.193.135, 122.14.246.33, 175.102.178.52, 116.253.24.*, 175.6.26.*, 220.169.153.*
+# > VIF Excluded Routes
+tun-excluded-routes = 239.255.255.250/32
+# > 路由防火墙
+# 包含所有的网络请求
+include-all-networks = false
+# 包含本地网络请求
+include-local-networks = false
+# 代理请求本地DNS映射
+use-local-host-item-for-proxy = false
 
 [Replica]
-hide-apple-request = true
-hide-crashlytics-request = true
-hide-udp = false
-keyword-filter-type = false
+# 0 为关闭，1 为开启
+# > 隐藏 Apple 请求
+hide-apple-request = 0
+# > 隐藏崩溃追踪器请求
+hide-crash-reporter-request = 1
+# > 隐藏 UDP 会话
+hide-udp = 0
+# > 关键词过滤器
+# keyword-filter-type = none
+# > 关键词
+# keyword-filter = (null)
 
 [Proxy]
 Direct = direct
@@ -41,16 +98,14 @@ US节点 = select, update-interval=0, no-alert=0, hidden=0, policy-path=https://
 JP节点 = select, update-interval=0, policy-regex-filter=(?=.*(日|JP|(?i)Japan))^((?!(港|台|韩|新|美)).)*$, no-alert=0, hidden=0, policy-path=https://amyconvert.com/api?target=surge&ver=4&url=https%3A%2F%2Ffoly.ga%2Flink%2F5uvIZHCYgAk0BjaQ%3Fclash%3D1%26extend%3D1&insert=false&emoji=true&list=true&tfo=true&scv=false&fdn=false&sort=true&udp=true
 TW节点 = select, update-interval=0, policy-regex-filter=(?=.*(台|TW|(?i)Taiwan))^((?!(港|日|韩|新|美)).)*$, no-alert=0, hidden=0, policy-path=https://sub.store/download/p
 other线路 = select, policy-path=https://sub.store/download/p, update-interval=0, policy-regex-filter=(?=.*)^((?!(港|HK|Hong|台|TW|Taiwan|日|JP|Japan|美|US|States|American|新|狮|獅|SG|Singapore|韩)).)*$, no-alert=0, hidden=0
-
 [Rule]
-# > Spotify
-DOMAIN-SUFFIX,ap.spotify.com,Direct
-# > Client
-# > Proxy
-PROCESS-NAME,v2ray,Direct
-PROCESS-NAME,ss-local,Direct
+# 屏蔽HTTP3/QUIC协议
+AND,((PROTOCOL,UDP), (DEST-PORT,443)),REJECT-NO-DROP
+# 屏蔽YouTube的UDP
+AND,((PROTOCOL,UDP), (DOMAIN-SUFFIX,googlevideo.com)),REJECT-NO-DROP
+# Client(仅 macOS)
 PROCESS-NAME,UUBooster,Direct
-# > Download
+# > Download (仅 macOS)
 PROCESS-NAME,aria2c,Direct
 PROCESS-NAME,fdm,Direct
 PROCESS-NAME,Folx,Direct
@@ -60,20 +115,33 @@ PROCESS-NAME,Transmission,Direct
 PROCESS-NAME,uTorrent,Direct
 PROCESS-NAME,WebTorrent,Direct
 PROCESS-NAME,WebTorrent Helper,Direct
-# ------Rulesets (规则集）------
-# > Advertising (广告)
-RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Guard/Advertising.list,Reject
-DOMAIN-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Guard/AdvertisingPlus.list,Reject
-# > Privacy (隐私)
-RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Guard/Privacy.list,Reject
-# > Hijacking (运营商劫持或恶意网站)
-RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Guard/Hijacking.list,Reject
+# 屏蔽 iOS 系统更新（如需屏蔽iOS系统更新请自行注释掉 “#" 即可生效）
+# DOMAIN,mesu.apple.com,Reject
+# DOMAIN,gdmf.apple.com,Reject
+# DOMAIN,updates-http.cdn-apple.com,Reject
+# DOMAIN,xp.apple.com,Reject
+# 后续规则修正
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Unbreak.list,Direct
+# 广告拦截
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Advertising/Advertising.list,REJECT
+DOMAIN-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Advertising/Advertising_Domain.list,REJECT
+# 隐私保护
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Privacy/Privacy.list,REJECT,update-interval=604800
+DOMAIN-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Privacy/Privacy_Domain.list,REJECT
+# 防止app跟踪
+DOMAIN-SET,https://github.com/mieqq/mieqq/blob/master/In-AppTracker.txt,REJECT
+# 去广告
+RULE-SET,https://raw.githubusercontent.com/NobyDa/Script/master/Surge/AdRule.list,REJECT,update-interval=604800
+# 防劫持
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Guard/Hijacking.list,REJECT,update-interval=604800
 # 媒体
 RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/StreamingMedia/Streaming.list,全球媒体,update-interval=604800
 # 全球网
 RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Global.list,网络加速,update-interval=604800
-# > China
-RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/China.list,Direct
+# china
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/China.list,DIRECT
+# chinaip
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Extra/ChinaIP.list,DIRECT
 # > Local Area Network 局域网
 IP-CIDR,192.168.0.0/16,Direct
 IP-CIDR,10.0.0.0/8,Direct
@@ -81,40 +149,33 @@ IP-CIDR,172.16.0.0/12,Direct
 IP-CIDR,127.0.0.0/8,Direct
 IP-CIDR,100.64.0.0/10,Direct
 IP-CIDR,224.0.0.0/4,Direct
-# > ChinaIP
-# 使用来自 ipipdotnet 的 ChinaIP 以解决数据不准确的问题，使用 ChinaIP.list 时禁用「GEOIP,CN」规则
-RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Extra/ChinaIP.list,Direct
-# > GeoIP China(若启用，则禁用 ChinaIP.list)
-# GEOIP,CN,Direct
-# > DNS 查询失败走 Final 规则
+# 内置规则
+RULE-SET,SYSTEM,DIRECT
+RULE-SET,LAN,DIRECT
+# Geoip
+# GEOIP,CN,HYBRID
+# 最终规则
 FINAL,其他走向,dns-failed
 
 [Host]
-# > 该段定义本地 DNS 记录
-# > 该功能等同于 /etc/hosts，加上了泛解析和别名支持。
-# > Firebase Cloud Messaging
+# Firebase Cloud Messaging
 mtalk.google.com = 108.177.125.188
-# ===============================================================================
-# 该段定义针对 HTTP 请求的 URL 重定向规则
+# Google Dl
+dl.google.com = server:119.29.29.29
+dl.l.google.com = server:119.29.29.29
+# TP-Link
+tplogin.cn = server:syslib
+tplinklogin.net = server:syslib
+melogin.cn = server:syslib
+falogin.cn = server:syslib
+# Apple TestFlight
+*testflight.apple.com = server:8.8.4.4
+# 解锁了「模块」功能的用户可以使用 General.sgmodule 后可移除 [URL Rewrite] 及 [MITM] 的「hostname = www.google.cn,api.abema.io」部分
+# 建议使用 General.sgmodule，其他 .sgmodule 按需加入
+# 未解锁「模块」功能的用户不要删除以下内容，参照说明(https://github.com/DivineEngine/Profiles/tree/master/Surge)使用快捷指令更新相关内容。
 
 [URL Rewrite]
-# > 有两种重定向方式: 'header' 和 '302'
-# > 建议用模块
-# > Redirect Google Search Service
-^(http|https):\/\/(www.)?(g|google)\.cn https://www.google.com 302
-# AbeamTV Unlock
-^https?:\/\/api\.abema\.io\/v\d\/ip\/check - reject
-# Redirect Google Service
-^https?:\/\/(www.)?g\.cn https://www.google.com 302
-^https?:\/\/(www.)?google\.cn https://www.google.com 302
-# Redirect HTTP to HTTPS
-^https?:\/\/(www.)?taobao\.com\/ https://www.taobao.com/ 302
-^https?:\/\/(www.)?jd\.com\/ https://www.jd.com/ 302
-^https?:\/\/(www.)?mi\.com\/ https://www.mi.com/ 302
-^https?:\/\/you\.163\.com\/ https://you.163.com/ 302
-^https?:\/\/(www.)?suning\.com/ https://suning.com/ 302
-^https?:\/\/(www.)?yhd\.com https://yhd.com/ 302
-# ===============================================================================
+^http://(www.)?google.cn https://www.google.com 302
 
 [MITM]
 skip-server-cert-verify = true
