@@ -48,11 +48,9 @@ server=/melogin.cn/system
 server=/falogin.cn/system
 
 [policy]
-static=全球加速, 香港节点, 台湾节点, 日本节点, 狮城节点, 美国节点, proxy, 其他节点, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
-static=苹果服务, direct, 香港节点, 台湾节点, 美国节点, 日本节点, 狮城节点, proxy, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/Apple.png
-static=港台番剧, direct, 香港节点, 台湾节点, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/mini.json
-static=国际媒体, 香港节点, 台湾节点, 日本节点, 美国节点, 狮城节点, proxy, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/YouTube.png
-static=黑白名单, 全球加速, direct, 香港节点, 台湾节点, 日本节点, 狮城节点, 美国节点, proxy, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/Final.png
+static=网络加速, 香港节点, 台湾节点, 日本节点, 狮城节点, 美国节点, proxy, 其他节点, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
+static=全球媒体, 香港节点, 台湾节点, 日本节点, 美国节点, 狮城节点, proxy, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/YouTube.png
+static=其他走向, direct, 香港节点, 台湾节点, 日本节点, 狮城节点, 美国节点, proxy, 网络加速, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/Final.png
 url-latency-benchmark=美国节点, server-tag-regex=(?=.*(美|US|(?i)States|American))^((?!(港|台|日|韩|新)).)*$, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/US.png
 url-latency-benchmark=香港节点, server-tag-regex=(?=.*(港|HK|(?i)Hong))^((?!(台|日|韩|新|美)).)*$, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/HK.png
 url-latency-benchmark=台湾节点, server-tag-regex=(?=.*(台|TW|(?i)Taiwan))^((?!(港|日|韩|新|美)).)*$, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/TW.png
@@ -61,9 +59,9 @@ url-latency-benchmark=狮城节点, server-tag-regex=(?=.*(新|狮|獅|SG|(?i)Si
 static=其他节点, server-tag-regex=(?=.*)^((?!(港|HK|Hong|台|TW|Taiwan|日|JP|Japan|美|US|States|American|新|狮|獅|SG|Singapore)).)*$
 
 [server_remote]
-https://bigairport.icu/api/v1/client/subscribe?token=b7095e693681e94382ae5edf1f9a5fc5, tag=Tag-1637552121, update-interval=172800, opt-parser=false, enabled=false
-https://foly.ga/link/5uvIZHCYgAk0BjaQ?clash=1&extend=1, tag=Tag-1634737056, update-interval=172800, opt-parser=true, enabled=false
-https://smallairport.icu/api/v1/client/subscribe?token=762be214b570466cefb8ab200a14050f, tag=Tag-1634470641, update-interval=172800, opt-parser=false, enabled=false
+https://bigairport.icu/api/v1/client/subscribe?token=b7095e693681e94382ae5edf1f9a5fc5, tag=Tag-1637552121, update-interval=172800, opt-parser=false, enabled=true
+https://foly.ga/link/5uvIZHCYgAk0BjaQ?clash=1&extend=1, tag=Tag-1634737056, update-interval=172800, opt-parser=true, enabled=true
+https://smallairport.icu/api/v1/client/subscribe?token=762be214b570466cefb8ab200a14050f, tag=Tag-1634470641, update-interval=172800, opt-parser=false, enabled=true
 [filter_remote]
 # 后续规则修正
 https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Unbreak.list, tag=后续规则修正, force-policy=direct, update-interval=86400, opt-parser=true, enabled=true
@@ -85,10 +83,10 @@ https://raw.githubusercontent.com/mieqq/mieqq/master/In-AppTracker.txt#type=doma
 https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Guard/Hijacking.list, tag=运营商劫持或恶意网站, force-policy=reject, update-interval=86400, opt-parser=true, enabled=true
 
 # 国际流媒体服务
-https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/StreamingMedia/Streaming.list, tag=国际流媒体服务, force-policy=国际媒体, update-interval=86400, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/StreamingMedia/Streaming.list, tag=国际流媒体服务, force-policy=全球媒体, update-interval=86400, opt-parser=true, enabled=true
 
 # 全球加速
-https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Global.list, tag=全球加速, force-policy=全球加速, update-interval=86400, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Global.list, tag=全球加速, force-policy=网络加速, update-interval=86400, opt-parser=true, enabled=true
 
 # 中国直连
 https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/China.list, tag=中国直连, force-policy=direct, update-interval=86400, opt-parser=true, enabled=true
