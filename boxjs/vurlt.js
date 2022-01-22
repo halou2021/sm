@@ -11,7 +11,7 @@ A tool written according to vultr cloud api to check account/balance etc.
 */
 
 // 将下面 apiKey 更改至你自己的 apiKey
-var apiKey = 'YOUR_OWN_APIKEY'
+var apiKey = 'L4K4CA5CIGUNGFVXFQX3BUWDHXN5D6HXEHCA'
 // 将下面的 serverSubId 更改至你自己想要显示的 serverSubId
 var serverSubId = YOUR_OWN_SERVER_SUBID
 
