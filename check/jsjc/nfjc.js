@@ -30,8 +30,8 @@ const BASE_URL = 'https://www.netflix.com/title/'
 const FILM_ID = 81215567
 const AREA_TEST_FILM_ID = 80018499
 const DEFAULT_OPTIONS = {
-  title: 'Netflix 解锁检测',
-  fullContent: '完整支持Netflix，地区：#REGION_FLAG# #REGION_NAME#',
+  title: 'HBO 解锁检测',
+  fullContent: '支持HBO，地区：#REGION_FLAG# #REGION_NAME#',
   fullIcon: '',
   fullIconColor: '',
   fullStyle: 'good',
