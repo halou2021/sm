@@ -41,12 +41,11 @@ Sub_info = script-name=Sub_info,update-interval=86400
   let proportion = used / total;
   let content = [`已用 : ${toPercent(proportion)} | 剩余 : ${bytesToSize(total-used)}`];
 
-/*
   if (resetDayLeft) {
     content.push(`重置：剩余${resetDayLeft}天`);
   }
 
-    if (expire && expire !== "false") {
+    if (expire) {
     if (/^[\d.]+$/.test(expire)) expire *= 1000;
     content.push(`到期：${formatTime(expire)}`);
   }
