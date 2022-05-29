@@ -58,7 +58,7 @@ let args = getArgs();
   $done({
     title: `${args.title} | ${bytesToSize(total)} | ${hour}:${minutes}`,
     content: content.join("\n"),
-    //content: `还剩：${bytesToSize(total-used)} | ${resetDayLeft}天`,
+    //content: `还有：${bytesToSize(total-used)} | ${resetDayLeft}天`,
     icon: args.icon || "airplane.circle",
     "icon-color": args.color || "#007aff",
   });
