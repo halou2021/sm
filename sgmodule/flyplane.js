@@ -46,7 +46,7 @@ Sub_info = script-name=Sub_info,update-interval=86400
     content.push(`重置：剩余${resetDayLeft}天`);
   }
 
-  if (expire) {
+    if (expire && expire !== "false") {
     if (/^[\d.]+$/.test(expire)) expire *= 1000;
     content.push(`到期：${formatTime(expire)}`);
   }
@@ -58,7 +58,7 @@ Sub_info = script-name=Sub_info,update-interval=86400
   minutes = minutes > 9 ? minutes : "0" + minutes;
 
   $done({
-    title: `${args.title} ` + `| 重置 : ` + `${resetDayLeft} Days`,
+    title: `${args.title} ` + `| 重置 ： ` + `${resetDayLeft} Days`,
     content: content.join("\n"),
     icon: args.icon || "airplane.circle",
     "icon-color": args.color || "#007aff",
