@@ -1,3 +1,5 @@
+let args = getArgs();
+
 (async () => {
   let args = getArgs();
   let info = await getDataInfo(args.url);
