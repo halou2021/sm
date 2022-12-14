@@ -1,5 +1,3 @@
-let args = getArgs();
-
 (async () => {
   let args = getArgs();
   let info = await getDataInfo(args.url);
@@ -9,7 +7,7 @@ let args = getArgs();
   let used = info.download + info.upload;
   let total = info.total;
   let expire = args.expire  info.expire;
-  let content = [`已用：${toPercent(used, total)} | 剩余: ${toMinus(used, total)}`];
+  let content = [`已用：${toPercent(used, total)} | 剩余: ${toMultiply(total, used)}`];
 
   if (resetDayLeft  expire) {
     if (resetDayLeft && expire && expire !== "false") {
@@ -111,12 +109,33 @@ function bytesToSize(bytes) {
   return (bytes / Math.pow(k, i)).toFixed(2) + " " + sizes[i];
 }
 
+function bytesToSizeNumber(bytes) {
+  if (bytes === 0) return "0";
+  let k = 1024;
+  let i = Math.floor(Math.log(bytes) / Math.log(k));
+  return (bytes / Math.pow(k, i)).toFixed(2);
+}
+
 function toPercent(num, total) {
   return Math.round((num / total) * 10000) / 100.0 + "%";
 }
 
-function toMinus(num, total) {
-  return Math.round(total - num);
+function toMultiply(total, num) {
+  let totalDecimalLen, numDecimalLen, maxLen, multiple;
+  try {
+    totalDecimalLen = total.toString().split(".").length;
+  } catch (e) {
+    totalDecimalLen = 0;
+  }
+  try {
+    numDecimalLen = num.toString().split(".").length;
+  } catch (e) {
+    numDecimalLen = 0;
+  }
+  maxLen = Math.max(totalDecimalLen, numDecimalLen);
+  multiple = Math.pow(10, maxLen);
+  const numberSize = ((total * multiple - num * multiple) / multiple).toFixed(maxLen);
+  return bytesToSize(numberSize);
 }
 
 function formatTime(time) {
