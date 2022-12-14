@@ -6,18 +6,18 @@
 
   let used = info.download + info.upload;
   let total = info.total;
-  let expire = args.expire  info.expire;
+  let expire = args.expire || info.expire;
   let content = [`已用：${toPercent(used, total)} | 剩余: ${toMultiply(total, used)}`];
 
-  if (resetDayLeft  expire) {
+  if (resetDayLeft || expire) {
     if (resetDayLeft && expire && expire !== "false") {
       if (/^[\d.]+$/.test(expire)) expire *= 1000;
-      content.push(重置：${resetDayLeft}天 | ${formatTime(expire)});
+      content.push(`重置：${resetDayLeft}天 | ${formatTime(expire)}`);
     } else if (resetDayLeft && !expire) {
-      content.push(重置：${resetDayLeft}天);
+      content.push(`重置：${resetDayLeft}天`);
     } else if (!resetDayLeft && expire) {
       if (/^[\d.]+$/.test(expire)) expire *= 1000;
-      content.push(到期：${formatTime(expire)});
+      content.push(`到期：${formatTime(expire)}`);
     }
   }
 
@@ -28,10 +28,10 @@
   minutes = minutes > 9 ? minutes : "0" + minutes;
 
   $done({
-    title: ${args.title} | ${bytesToSize(total)} | ${hour}:${minutes},
+    title: `${args.title} | ${bytesToSize(total)} | ${hour}:${minutes}`,
     content: content.join("\n"),
-    icon: args.icon  "airplane.circle",
-    "icon-color": args.color  "#007aff",
+    icon: args.icon || "airplane.circle",
+    "icon-color": args.color || "#007aff",
   });
 })();
 
