@@ -7,12 +7,12 @@
   let used = info.download + info.upload;
   let total = info.total;
   let expire = args.expire || info.expire;
-  let content = [`已用：${toPercent(used, total)} | 剩余: ${toMultiply(total, used)}`];
+  let content = [`已用：${toPercent(used, total)} \t|  剩余：${toMultiply(total, used)}`];
 
   if (resetDayLeft || expire) {
     if (resetDayLeft && expire && expire !== "false") {
       if (/^[\d.]+$/.test(expire)) expire *= 1000;
-      content.push(`重置：${resetDayLeft}天 | ${formatTime(expire)}`);
+      content.push(`重置：${resetDayLeft}天 \t|  ${formatTime(expire)}`);
     } else if (resetDayLeft && !expire) {
       content.push(`重置：${resetDayLeft}天`);
     } else if (!resetDayLeft && expire) {
@@ -117,8 +117,9 @@ function bytesToSizeNumber(bytes) {
 }
 
 function toPercent(num, total) {
-  return Math.round((num / total) * 10000) / 100.0 + "%";
+  return (Math.round((num / total) * 10000) / 100).toFixed(1) + "%";
 }
+
 
 function toMultiply(total, num) {
   let totalDecimalLen, numDecimalLen, maxLen, multiple;
@@ -143,5 +144,5 @@ function formatTime(time) {
   let year = dateObj.getFullYear();
   let month = dateObj.getMonth() + 1;
   let day = dateObj.getDate();
-  return year + "年" + month + "月" + day + "日";
+  return "到期：" + year + "." + month + "." + day + " ";
 }
