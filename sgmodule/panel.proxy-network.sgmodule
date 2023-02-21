@@ -1,0 +1,26 @@
+#!name = Proxy Network Info
+#!desc = 查询代理网络信息
+#!system = ios
+#@version: 1.1.1
+#@update: 2022-09-29
+## 模块地址
+# https://github.com/QuentinHsu/Awesome-Apple/blob/main/Surge/Module/Proxy-Network-Info.sgmodule?raw=true
+## 食用方式
+# Surge - 首页 - 通用 - 模块 - 模块 - 安装的模块 - 安装新模块 - 粘贴模块地址 - 好的
+
+### 使用说明：
+## 必要
+# 使用时，请保证 whoer.net 域名通过代理去请求！
+# 不然无法请求回数据！
+## 非必要
+# Panel 显示标题可修改：修改该模块中的 moduleTitle 值即可
+
+[Panel]
+Proxy-Network-Info = script-name = Proxy-Network-Info, update-interval = 1
+
+[Script]
+Proxy-Network-Info = type=generic, timeout=10, script-path=https://raw.githubusercontent.com/QuentinHsu/Awesome-Apple/main/Surge/Script/Proxy-Network-Info.js, argument=moduleTitle=Proxy Network Info
+
+[Rule]
+# 若你的配置不存在名为 Global Proxy 的代理策略组，请修改。
+DOMAIN-SUFFIX,whoer.net,Global Proxy
