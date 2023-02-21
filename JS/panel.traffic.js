@@ -12,9 +12,9 @@
   if (resetDayLeft || expire) {
     if (resetDayLeft && expire && expire !== "false") {
       if (/^[\d.]+$/.test(expire)) expire *= 1000;
-      content.push(`重置：${resetDayLeft}day \t|  ${formatTime(expire)}`);
+      content.push(`重置：${resetDayLeft}Day \t|  ${formatTime(expire)}`);
     } else if (resetDayLeft && !expire) {
-      content.push(`重置：${resetDayLeft}day`);
+      content.push(`重置：${resetDayLeft}Day`);
     } else if (!resetDayLeft && expire) {
       if (/^[\d.]+$/.test(expire)) expire *= 1000;
       content.push(`到期：${formatTime(expire)}`);
