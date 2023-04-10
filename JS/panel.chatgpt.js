@@ -31,7 +31,7 @@ let loc = cf.loc
 //loc
 let l = tf.indexOf(loc)
 if (l != -1) {
-	gpt = "支持"
+	gpt = "GPT: 支持"
 } else {
 	gpt = "GPT: 不支持"
 }
@@ -44,7 +44,7 @@ if (w != -1) {
 }
 body = {
 title: "ChatGPT",
-content: `${gpt}解锁:🇺🇸 ${loc}  `,
+content: `${gpt}   区域: ${loc}  `,
   icon: iconUrl,
   'icon-color': iconColor,
 },$done(body);})
