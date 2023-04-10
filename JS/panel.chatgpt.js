@@ -44,7 +44,7 @@ if (w != -1) {
 }
 body = {
 title: "ChatGPT",
-content: `${gpt}区域: ${loc}  `,
+content: `${gpt}解锁: 🇺🇸${loc}  `,
   icon: iconUrl,
   'icon-color': iconColor,
 },$done(body);})
