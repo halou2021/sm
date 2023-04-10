@@ -3,6 +3,21 @@ tf=["T1","XX","AL","DZ","AD","AO","AG","AR","AM","AU","AT","AZ","BS","BD","BB","
 tff=["plus","on"]
 let gpt;
 let warps;
+let iconUrl = ' ';
+let iconColor = ' ';
+let args = {};
+if (typeof $argument !== 'undefined') {
+  $argument.split('&').forEach(item => {
+    const [key, value] = item.split('=');
+    args[key] = value;
+  });
+}
+if (args.icon) {
+  iconUrl = args.icon;
+}
+if (args['icon-color']) {
+  iconColor = args['icon-color'];
+}
 $httpClient.get(url, function(error, response, data){
 	let lines = data.split("\n"); 
 	let cf = lines.reduce((acc, line) => {
@@ -16,7 +31,7 @@ let loc = cf.loc
 //loc
 let l = tf.indexOf(loc)
 if (l != -1) {
-	gpt = "GPT: 支持"
+	gpt = "支持"
 } else {
 	gpt = "GPT: 不支持"
 }
@@ -29,5 +44,7 @@ if (w != -1) {
 }
 body = {
 title: "ChatGPT",
-content: `${gpt}   Loc: ${loc}   Warp: ${warp} ${warps}`
+content: `${gpt}区域: ${loc}  `,
+  icon: iconUrl,
+  'icon-color': iconColor,
 },$done(body);})
