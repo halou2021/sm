@@ -50,7 +50,7 @@ if (w != -1) {
 }
 body = {
 title: "Chat GPT",
-content: `${gpt}：${loc} `,
+content: `${gpt}：{loc} `,
   icon: iconUrl,
   'icon-color': iconColor,
 },$done(body);})
