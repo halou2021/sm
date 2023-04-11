@@ -37,9 +37,9 @@ let loc = getCountryFlagEmoji(cf.loc)+cf.loc
 //loc
 let l = tf.indexOf(cf.loc)
 if (l != -1) {
-	gpt = "支持解锁："
+	gpt = "支持解锁"
 } else {
-	gpt = "不支持："
+	gpt = "不支持"
 }
 //warp
 let w = tff.indexOf(warp)
@@ -50,7 +50,7 @@ if (w != -1) {
 }
 body = {
 title: "Chat GPT",
-content: `${gpt}    ${loc} `,
+content: `${gpt}：    ${loc} `,
   icon: iconUrl,
   'icon-color': iconColor,
 },$done(body);})
