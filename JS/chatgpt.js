@@ -25,7 +25,7 @@ if (args['icon-color']) {
   iconColor = args['icon-color'];
 }
 $httpClient.get(url, function(error, response, data){
-	let lines = data.split("\n"); 
+	let lines = data.split("\n");
 	let cf = lines.reduce((acc, line) => {
 		let [key, value] = line.split("=");
 		acc[key] = value;
@@ -37,9 +37,9 @@ let loc = getCountryFlagEmoji(cf.loc)+cf.loc
 //loc
 let l = tf.indexOf(cf.loc)
 if (l != -1) {
-	gpt = "GPT: 支持"
+	gpt = "支持解锁"
 } else {
-	gpt = "GPT: 不支持"
+	gpt = "不支持"
 }
 //warp
 let w = tff.indexOf(warp)
@@ -49,8 +49,8 @@ if (w != -1) {
 	warps = "未开启"
 }
 body = {
-title: "ChatGPT",
-content: `${gpt}   Loc: ${loc }  `,
+title: "Chat GPT",
+content: `${gpt}   : ${loc} `,
   icon: iconUrl,
   'icon-color': iconColor,
 },$done(body);})
