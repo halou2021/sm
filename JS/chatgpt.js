@@ -70,7 +70,7 @@ $httpClient.get(url, function(error, response, data){
 
   // 组装通知数据
   let body = {
-  title: "ChatGPT",
+  title: "Chat GPT",
   content: `${gpt}  ${loc}  `,
   'icon-color': iconColor ? iconColor : undefined
   };
