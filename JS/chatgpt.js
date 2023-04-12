@@ -52,10 +52,10 @@ $httpClient.get(url, function(error, response, data){
   let l = tf.indexOf(cf.loc);
   let gpt, iconUsed;
   if (l !== -1) {
-  gpt = "GPT: ✓";
+  gpt = "支持解锁:";
   iconUsed = icon ? icon : undefined;
   } else {
-  gpt = "GPT: ✘";
+  gpt = "不能解锁:";
   iconUsed = iconerr ? iconerr : undefined;
   }
 
@@ -71,7 +71,7 @@ $httpClient.get(url, function(error, response, data){
   // 组装通知数据
   let body = {
   title: "ChatGPT",
-  content: `${gpt}  Loc: ${loc}  `,
+  content: `${gpt}  ${loc}  `,
   'icon-color': iconColor ? iconColor : undefined
   };
   if (iconUsed) {
