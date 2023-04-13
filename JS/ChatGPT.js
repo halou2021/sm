@@ -70,9 +70,9 @@ $httpClient.get(url, function(error, response, data){
   let w = tff.indexOf(warp);
   let warps;
   if (w !== -1) {
-  warps = "on";
+  warps = "✅";
   } else {
-  warps = "off";
+  warps = "❌";
   }
 
   // 组装通知数据
