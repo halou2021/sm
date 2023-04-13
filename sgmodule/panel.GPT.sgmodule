@@ -11,11 +11,4 @@
 # GPT
 CFGPT = script-name=CFGPT_nowarp,update-interval=-1
 [Script]
-CFGPT_nowarp = type=generic,timeout=6,script-path=https://github.com/halou2021/sm/raw/main/JS/ChatGPT.js,argument=icon=waveform.and.mic&iconerr=xmark.seal.fill&icon-color=#32CD32&iconerr-color=#D65C51
-
-#exclamationmark.triangle.fill
-
-
-
-
-
+CFGPT_nowarp = type=generic,timeout=6,script-path=https://github.com/halou2021/sm/raw/main/JS/ChatGPT.js,argument=icon=waveform.and.mic&iconerr=waveform.slash&icon-color=#32CD32&iconerr-color=#DC143C
