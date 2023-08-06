@@ -78,8 +78,8 @@ function getJMSDataInfo(url, callback) {
 function bytesToSize(bytes) {
   const sizes = ["Bytes", "KB", "MB", "GB", "TB"];
   if (bytes === undefined) return "N/A";
-  const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
-  return Math.round((bytes / Math.pow(1024, i)) * 100) / 100 + " " + sizes[i];
+  const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1000)));
+  return Math.round((bytes / Math.pow(1000, i)) * 100) / 100 + " " + sizes[i];
 }
 
 function toPercent(num, total) {
