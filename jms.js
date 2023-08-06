@@ -45,7 +45,7 @@ getJMSDataInfo(apiUrl, function (result) {
   }
 
   $done({
-    title: `${title} | ${toPercent(usage, total)} | ${hour}:${minutes}`,
+    title: `${title} | ${ total} | ${hour}:${minutes}`,
     content: content.join("\n"),
     icon: `${icon}`,
     "icon-color": `${iconColor}`,
