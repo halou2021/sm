@@ -1,3 +1,11 @@
+/*
+ * 由@mieqq编写
+ * 原脚本地址：https://raw.githubusercontent.com/mieqq/mieqq/master/sub_info_panel.js
+ * 由@Rabbit-Spec Key 修改
+ * 更新日期：2023.02.20
+ * 版本：1.6
+*/
+
 (async () => {
   let args = getArgs();
   let info = await getDataInfo(args.url);
@@ -12,9 +20,9 @@
   if (resetDayLeft || expire) {
     if (resetDayLeft && expire && expire !== "false") {
       if (/^[\d.]+$/.test(expire)) expire *= 1000;
-      content.push(`重置：${resetDayLeft}Day \t|  ${formatTime(expire)}`);
+      content.push(`重置：${resetDayLeft}天 \t|  ${formatTime(expire)}`);
     } else if (resetDayLeft && !expire) {
-      content.push(`重置：${resetDayLeft}Day`);
+      content.push(`重置：${resetDayLeft}天`);
     } else if (!resetDayLeft && expire) {
       if (/^[\d.]+$/.test(expire)) expire *= 1000;
       content.push(`到期：${formatTime(expire)}`);
