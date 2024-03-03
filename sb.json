@@ -448,7 +448,7 @@
     },
     {
       "tag": "hk-auto",
-      "type": "fallback",
+      "type": "loadbalance",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
       "interval": "1m",
@@ -456,7 +456,7 @@
     },
     {
       "tag": "tw-auto",
-      "type": "fallback",
+      "type": "loadbalance",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
       "interval": "1m",
@@ -464,7 +464,7 @@
     },
     {
       "tag": "jp-auto",
-      "type": "fallback",
+      "type": "loadbalance",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
       "interval": "1m",
@@ -472,7 +472,7 @@
     },
     {
       "tag": "sg-auto",
-      "type": "fallback",
+      "type": "loadbalance",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
       "interval": "1m",
@@ -480,7 +480,7 @@
     },
     {
       "tag": "us-auto",
-      "type": "fallback",
+      "type": "loadbalance",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
       "interval": "1m",
@@ -488,7 +488,7 @@
     },
     {
       "tag": "all-auto",
-      "type": "fallback",
+      "type": "loadbalance",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
       "interval": "1m",
