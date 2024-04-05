@@ -3,7 +3,7 @@
 
 [Script]
 #ChatGPT
-CFGPT_nowarp = type=generic,timeout=6,script-path=https://raw.githubusercontent.com/halou2021/sm/main/JS/panel.chatgpt.js,argument=icon=waveform.and.mic&iconerr=xmark.seal.fill&icon-color=#32CD32&iconerr-color=#D65C51
+CFGPT_nowarp = type=generic,timeout=6,script-path=https://github.com/halou2021/sm/raw/main/JS/ChatGPT.js,argument=icon=waveform.and.mic&iconerr=waveform.slash&icon-color=#32CD32&iconerr-color=#DC143C
 #奈飞
 nf_check = type=generic, script-path=https://gist.githubusercontent.com/Hyseen/b06e911a41036ebc36acf04ddebe7b9a/raw/nf_check.js?version=1633074636264, argument=title=Netflix&fullContent= 完整解锁：#REGION_FLAG# #REGION_NAME#&onlyOriginalContent=仅支持自制剧&fullIcon=video.fill.badge.checkmark&fullIconColor=#32CD32&onlyOriginalIcon=display.trianglebadge.exclamationmark&onlyOriginalIconColor=#F75C03
 #迪士尼
@@ -14,8 +14,8 @@ ytb_check = type=generic,timeout=5,script-path=https://gist.githubusercontent.co
 dazn_check = type=generic,script-path=https://raw.githubusercontent.com/halou2021/sm/main/JS/panel.Dazn.js,argument=title=Dazn&availableContent= 支持解锁：#REGION_FLAG# #REGION_NAME#&availableIcon=video.fill.badge.checkmark&availableIconColor=#32CD32&comingContent=Coming Soon ➟ #REGION_FLAG# #REGION_NAME#&notAvailableContent=不支持 Dazn&notAvailableIcon=video.slash.fill&notAvailableIconColor=#E71D36
 
 [Panel]
-#chatgpt
-CFGPT = script-name=CFGPT,update-interval=-1
+# GPT
+CFGPT = script-name=CFGPT_nowarp,update-interval=-1
 #奈飞
 nf_check = script-name=nf_check, title="Netflix 解锁检测", content="请刷新", update-interval=86400
 #迪士尼
